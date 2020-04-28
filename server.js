@@ -15,9 +15,9 @@ app.use(express.static('./public'));
 
 
 //db coonection
-//const db_uri=process.env.MONGO_URI;
+const db_uri=process.env.MONGO_URI;
 
-mongoose.connect('mongodb://localhost/event01',{
+mongoose.connect(db_uri,{
     useNewUrlParser:true,
     useCreateIndex:true
 }).then(()=>{
