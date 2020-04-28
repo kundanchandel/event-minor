@@ -4,9 +4,9 @@ const express   =require('express'),
       cors      =require('cors'),
       dotenv    =require('dotenv'),
       app       =express();
+ 
 
-
-
+app.use(bodyParser.urlencoded({extended: true}));
  //middleware     
 dotenv.config();
 app.use(cors());
@@ -15,9 +15,9 @@ app.use(express.static('./public'));
 
 
 //db coonection
-const db_uri=process.env.MONGO_URI;
+//const db_uri=process.env.MONGO_URI;
 
-mongoose.connect(db_uri,{
+mongoose.connect('mongodb://localhost/event01',{
     useNewUrlParser:true,
     useCreateIndex:true
 }).then(()=>{
@@ -28,7 +28,7 @@ mongoose.connect(db_uri,{
 
 //API 
 app.use('/api/events/',require('./routes/api/events'));
-
+app.use('/api/user/',require('./routes/api/user'));
 
 //server config
 const port=process.env.PORT||5000;
